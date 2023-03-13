@@ -4,29 +4,31 @@ import { CONFIG } from 'src/environments/environment';
 import { HeaderService } from '../header/header.service';
 import { Observable } from 'rxjs';
 
-export interface Movie {
+
+export interface MovieResult {
   page: number
-  results: Result[]
+  results: Movie[]
   total_pages: number
   total_results: number
 }
 
-export interface Result {
+export interface Movie {
   adult: boolean
-  backdrop_path?: string
+  backdrop_path?: String
   genre_ids: number[]
   id: number
-  origin_country: string[]
-  original_language: string
-  original_name: string
-  overview: string
+  original_language: String
+  original_title: String
+  overview: String
   popularity: number
-  poster_path?: string
-  first_air_date: string
-  name: string
+  poster_path?: String
+  release_date: String
+  title: String
+  video: boolean
   vote_average: number
   vote_count: number
 }
+
 
 @Injectable({
   providedIn: 'root'
@@ -44,11 +46,11 @@ export class ApiService {
   ) { }
 
 
-  searchMovie(query: String): Observable<Movie> {
+  searchMovie(query: String): Observable<MovieResult> {
     let data : any = CONFIG.api_url + '/search/movie' + '?language=fr' + '&query=' + query
     console.log("DATa : ", data);
     return this.http
-      .get<Movie>(
+      .get<MovieResult>(
         data,
         this.headerService.getHeaders()
       )

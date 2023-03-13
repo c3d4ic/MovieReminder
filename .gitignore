@@ -24,6 +24,11 @@ log.txt
 /plugins
 
 
+# Envrionment Variables
+**/environment.*
+!**/environment.model.ts
+
+
 # Compiled output
 /dist
 /tmp

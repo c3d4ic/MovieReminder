@@ -5,4 +5,5 @@ export const environment = {
 export const CONFIG = {
   api_url: "",
   api_token: "",
+  api_image: "",
 };

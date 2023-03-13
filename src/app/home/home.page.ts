@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ApiService } from '../commons/services/api/api.service';
+import { ApiService, Movie, MovieResult } from '../commons/services/api/api.service';
 
 
 @Component({
@@ -14,21 +14,19 @@ export class HomePage {
 
   
   searchValue: String = "";
+  movie: Array<Movie> = [];
+
+
   constructor(
     private apiService: ApiService
   ) {}
 
-  ionViewWillEnter() {
-    console.log("View did enter")
-    // this.apiService.getMovie().then(result => {
-    //   console.log("Result:  ", result)
-    // })
-    
+  ionViewWillEnter() {  
   }
 
   search() {
-    this.apiService.searchMovie(this.searchValue).subscribe((result) => {
-      
+    this.apiService.searchTV(this.searchValue).subscribe((result: MovieResult) => {
+      this.movie = result.results;
       console.log("Result : ", result)
     })
   }
